@@ -37,6 +37,9 @@ namespace Gifter.Controllers
         {
             _postRepository.Add(post);
             return CreatedAtAction("Get", new { id = post.Id }, post);
+            DateTime dateCreated = DateTime.Now;
+            post.DateCreated = dateCreated;
+
         }
 
         [HttpPut("{id}")]
@@ -76,7 +79,7 @@ namespace Gifter.Controllers
         }
 
         [HttpGet("hottest")]
-        public IActionResult Search(string since)
+        public IActionResult Search(DateTime since)
         {
             return Ok(_postRepository.Hottest(since));
         }

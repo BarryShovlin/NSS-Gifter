@@ -369,7 +369,7 @@ namespace Gifter.Repositories
                 }
             }
         }
-        public List<Post> Hottest(string since)
+        public List<Post> Hottest(DateTime since)
         {
             using (var conn = Connection)
             {
