@@ -360,7 +360,8 @@ namespace Gifter.Repositories
                                 DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
                                 ImageUrl = DbUtils.GetString(reader, "UserProfileImageUrl"),
                             },
-                        });
+   
+                        }); 
                     }
 
                     reader.Close();
