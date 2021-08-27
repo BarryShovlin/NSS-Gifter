@@ -24,22 +24,29 @@ namespace Gifter.Tests.Mocks
         }
         public void Add(UserProfile user)
         {
-            throw new NotImplementedException();
+            var lastUserProfile = _data.Last();
+            user.Id = lastUserProfile.Id + 1;
+            _data.Add(user);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var userProfileToDelete = _data.FirstOrDefault(u => u.Id == id);
+            if (userProfileToDelete == null )
+            {
+                return;
+            }
+            _data.Remove(userProfileToDelete);
         }
 
         public List<UserProfile> GetAll()
         {
-            throw new NotImplementedException();
+            return _data;
         }
 
         public UserProfile GetById(int id)
         {
-            throw new NotImplementedException();
+            return _data.FirstOrDefault(u => u.Id == id);
         }
 
         public UserProfile GetUserAndPosts(int id)
@@ -49,7 +56,18 @@ namespace Gifter.Tests.Mocks
 
         public void Update(UserProfile user)
         {
-            throw new NotImplementedException();
+            var currentUserProfile = _data.FirstOrDefault(u => u.Id == user.Id);
+
+            if (currentUserProfile == null)
+            {
+                return;
+            }
+
+            currentUserProfile.Name = user.Name;
+            currentUserProfile.Email = user.Email;
+            currentUserProfile.Bio = user.Bio;
+            currentUserProfile.ImageUrl = user.ImageUrl;
+            currentUserProfile.DateCreated = user.DateCreated;
         }
     }
 }
